@@ -1,0 +1,355 @@
+/* overTuner — 夜と星空 */
+
+:root {
+  color-scheme: dark light;
+  --bg:      #0b0a14;
+  --bg-deep: #06050d;
+  --panel:   #14121f;
+  --fg:      #e8e6f2;
+  --muted:   #9b95b5;
+  --line:    #262236;
+  --accent:  #8fa4ff;
+  --accent-soft: #c9a7ff;
+  --star: rgba(255,255,255,.85);
+  --star-dim: rgba(190,205,255,.5);
+  --shadow: 0 1px 3px rgba(0,0,0,.5), 0 8px 24px rgba(0,0,0,.35);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg:      #fbfaff;
+    --bg-deep: #f2effb;
+    --panel:   #f5f3fc;
+    --fg:      #2a2440;
+    --muted:   #6b6480;
+    --line:    #e4e0f0;
+    --accent:  #4a5fb0;
+    --accent-soft: #7a5fb0;
+    --star: rgba(120,130,190,.35);
+    --star-dim: rgba(120,130,190,.2);
+    --shadow: 0 1px 2px rgba(60,50,90,.08), 0 8px 20px rgba(60,50,90,.07);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0 0 6rem;
+  font-family: -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  line-height: 1.9;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 星空。画像を使わず CSS だけで散らす */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(1.5px 1.5px at 12% 18%, var(--star), transparent),
+    radial-gradient(1.5px 1.5px at 68% 9%,  var(--star), transparent),
+    radial-gradient(1px 1px   at 34% 42%, var(--star-dim), transparent),
+    radial-gradient(1.5px 1.5px at 88% 33%, var(--star), transparent),
+    radial-gradient(1px 1px   at 22% 66%, var(--star-dim), transparent),
+    radial-gradient(1.5px 1.5px at 55% 78%, var(--star-dim), transparent),
+    radial-gradient(1px 1px   at 78% 61%, var(--star-dim), transparent),
+    radial-gradient(1.5px 1.5px at 45% 25%, var(--star), transparent),
+    radial-gradient(1px 1px   at 92% 84%, var(--star-dim), transparent),
+    radial-gradient(1px 1px   at 8%  88%, var(--star-dim), transparent),
+    radial-gradient(ellipse 90% 55% at 50% -10%, var(--bg-deep), transparent 70%);
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.wrap { max-width: 60rem; margin: 0 auto; padding: 0 1.5rem; }
+
+/* ヘッダー */
+
+/* 見出し */
+h3 { font-size: 1rem; margin: 1.75rem 0 .4rem; }
+
+section { padding: clamp(4.5rem, 11vh, 7rem) 0 0; }
+
+p { margin: .7rem 0; }
+a { color: var(--accent); text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+a:hover { color: var(--accent-soft); }
+.muted { color: var(--muted); font-size: .9rem; }
+ul { padding-left: 1.3rem; }
+li { margin: .4rem 0; }
+
+/* リンク */
+.chips { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.25rem 0 0; padding: 0; list-style: none; }
+.chips a {
+  display: inline-block;
+  padding: .45rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+  text-decoration: none;
+  font-size: .9rem;
+  transition: border-color .18s, color .18s;
+}
+.chips a:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+
+/* パネル */
+.panel {
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+  border: 1px solid var(--line);
+  border-radius: .75rem;
+  padding: 1.1rem 1.25rem;
+  margin: 1.25rem 0;
+}
+.note { border-left: 3px solid var(--accent); }
+
+/* アプリ */
+.app { display: flex; gap: 1.15rem; align-items: center; margin: 0 0 1.25rem; }
+.app img { width: 84px; height: 84px; border-radius: 1.2rem; flex: none; box-shadow: var(--shadow); }
+.app p { margin: .1rem 0; }
+.app h1 { font-size: 1.6rem; margin: 0; letter-spacing: .04em; }
+
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: .75rem; margin: 1.25rem 0; }
+.shots img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: .6rem; }
+
+.pv { margin: 1.25rem 0; }
+.pv img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: .6rem; }
+
+/* 手順 */
+.steps { counter-reset: s; list-style: none; padding: 0; }
+.steps li { counter-increment: s; position: relative; padding-left: 2.4rem; margin: 1rem 0; }
+.steps li::before {
+  content: counter(s);
+  position: absolute; left: 0; top: .3rem;
+  width: 1.6rem; height: 1.6rem; border-radius: 50%;
+  background: var(--accent); color: var(--bg);
+  font-size: .8rem; font-weight: 700;
+  display: grid; place-items: center;
+}
+
+nav.crumb { padding: 2.5rem 0 1.5rem; font-size: .88rem; color: var(--muted); }
+nav.crumb a { text-decoration: none; }
+
+footer {
+  margin-top: 4.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .87rem;
+  line-height: 1.85;
+}
+
+/* メンバー */
+.member { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: .5rem 1.5rem; }
+.member dt { color: var(--muted); font-size: .85rem; letter-spacing: .06em; padding-top: .1rem; }
+.member dd { margin: 0; }
+@media (max-width: 30rem) {
+  .member { grid-template-columns: 1fr; gap: 0; }
+  .member dd { margin-bottom: .9rem; }
+}
+
+.nav-home img {
+  display: block; width: 20px; height: auto; opacity: .8;
+}
+@media (prefers-color-scheme: light) {
+  .nav-home img { filter: invert(.8); opacity: .55; }
+}
+.nav ul {
+  display: flex; gap: 1.4rem; list-style: none; margin: 0; padding: 0;
+}
+.nav a {
+  text-decoration: none; color: var(--muted);
+  font-size: .76rem; letter-spacing: .14em; font-weight: 600;
+  transition: color .18s;
+}
+.nav a:hover { color: var(--accent); }
+@media (max-width: 30rem) {
+  .nav { padding: .6rem 1rem; }
+  .nav ul { gap: .95rem; }
+  .nav a { font-size: .7rem; letter-spacing: .1em; }
+}
+
+/* セクション見出しがナビに隠れないように */
+section { scroll-margin-top: 4rem; }
+
+.contact-lead { font-size: 1rem; }
+
+/* ── タイポグラフィ主導のヒーロー ───────── */
+.hero {
+  padding: clamp(6rem, 22vh, 12rem) 0 clamp(5rem, 14vh, 8rem);
+}
+@media (prefers-color-scheme: light) {
+    }
+@media (max-width: 30rem) { .br-sp { display: inline; } }
+
+/* ── 見出し ─────────────────────────── */
+h2 {
+  margin: 0 0 2.25rem;
+  font-size: clamp(1.6rem, 4.5vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: .06em;
+  line-height: 1.2;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+h2 .idx {
+  display: block;
+  font-size: .7rem;
+  letter-spacing: .2em;
+  color: var(--accent);
+  margin-bottom: .9rem;
+  font-weight: 700;
+}
+
+/* ── 楽曲リスト ─────────────────────── */
+.disco { display: grid; gap: 1rem; }
+.track {
+  display: grid;
+  grid-template-columns: 168px 1fr;
+  gap: 1.1rem;
+  align-items: center;
+  padding: .75rem;
+  border: 1px solid var(--line);
+  border-radius: .75rem;
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .18s, transform .18s, box-shadow .18s;
+}
+.track:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.track img {
+  width: 100%;
+  height: auto;          /* width/height属性の presentational hint を打ち消す */
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: .5rem;
+  display: block;
+  background: var(--bg-deep);
+}
+.track .t { font-weight: 600; font-size: 1.05rem; line-height: 1.5; }
+.track .o { color: var(--muted); font-size: .85rem; line-height: 1.7; margin-top: .2rem; }
+.track .latest {
+  display: inline-block; vertical-align: middle;
+  margin-left: .55rem; padding: .1rem .5rem;
+  font-size: .62rem; letter-spacing: .12em; font-weight: 700;
+  border-radius: 999px;
+  background: var(--accent); color: var(--bg);
+}
+@media (max-width: 30rem) {
+  .track { grid-template-columns: 1fr; gap: .75rem; }
+}
+.more-link { margin: 2rem 0 0; font-size: .9rem; }
+.more-link a { text-decoration: none; }
+
+/* ── アプリのバナー ─────────────────── */
+.banner {
+  display: block; text-decoration: none; color: inherit;
+  border-radius: .6rem; overflow: hidden;
+  border: 1px solid var(--line);
+  transition: border-color .18s;
+}
+.banner img {
+  width: 100%; height: auto; display: block;
+  transition: transform .45s cubic-bezier(.2,.7,.3,1);
+}
+.banner:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+.banner:hover img { transform: scale(1.03); }
+.banner .meta {
+  padding: 1rem 1.15rem 1.15rem;
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+}
+.banner .t { font-weight: 600; font-size: 1.15rem; }
+.banner .o { color: var(--muted); font-size: .86rem; line-height: 1.7; margin-top: .2rem; }
+.banner .d { color: var(--accent); font-size: .86rem; margin-top: .5rem; }
+
+.hero .lockup {
+  display: block;
+  width: min(34rem, 94%);
+  height: auto;
+  margin: 0;
+  filter: invert(1);          /* 既定=ダーク。ワードマークが黒なので白へ反転 */
+}
+@media (prefers-color-scheme: light) {
+  .hero .lockup { filter: none; }
+}
+
+/* ── 隅に立つさとり ─────────────────── */
+.mascot {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  width: 72px;
+  z-index: 5;
+  pointer-events: none;        /* 装飾なのでクリックを奪わない */
+}
+.mascot img {
+  width: 100%; height: auto; display: block;
+  image-rendering: pixelated;  /* 拡大してもドットを滲ませない */
+}
+.mascot .still { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mascot .anim  { display: none; }
+  .mascot .still { display: block; }
+}
+@media (max-width: 30rem) {
+  .mascot { width: 52px; left: .6rem; bottom: .6rem; }
+}
+
+/* ── ライブ履歴 ─────────────────────── */
+.gigs { display: grid; gap: 1.25rem; }
+.gig {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: .75rem;
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+}
+.gig img {
+  width: 100%; height: auto; display: block;
+  border-radius: .4rem;
+  border: 1px solid var(--line);
+}
+.gig .d {
+  color: var(--accent);
+  font-size: .78rem; letter-spacing: .14em; font-weight: 700;
+}
+.gig .t { font-weight: 600; font-size: 1.25rem; line-height: 1.4; margin-top: .35rem; }
+.gig .o { color: var(--muted); font-size: .88rem; line-height: 1.8; margin-top: .5rem; }
+.gig .cast {
+  color: var(--muted); font-size: .8rem; line-height: 1.8;
+  margin-top: .9rem; padding-top: .8rem;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 34rem) {
+  .gig { grid-template-columns: 1fr; gap: 1rem; }
+  .gig img { max-width: 240px; }
+}
+.gig-link { margin: .8rem 0 0; font-size: .85rem; }
+.gig-link a { text-decoration: none; }
+
+/* ── プラットフォームのアイコン ─────────── */
+.chips a {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+.chips .ico {
+  width: 1.05em; height: 1.05em;
+  fill: currentColor;
+  flex: none;
+}
