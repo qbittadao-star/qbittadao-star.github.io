@@ -353,3 +353,12 @@ h2 .idx {
   fill: currentColor;
   flex: none;
 }
+.recruit {
+  margin: 1rem 0 0;
+  padding: .85rem 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--line));
+  border-radius: .6rem;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  font-size: .92rem;
+}
+.recruit a { text-decoration: none; }
