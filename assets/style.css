@@ -304,7 +304,9 @@ h2 .idx {
   .mascot .still { display: block; }
 }
 @media (max-width: 30rem) {
-  .mascot { width: 52px; left: .6rem; bottom: .6rem; }
+  /* 狭い画面では本文が端まで来るので、左下だと左揃えのテキストに重なる。
+     右下の余白へ逃がし、z-index も下げてカードの後ろに回す。 */
+  .mascot { width: 44px; left: auto; right: .4rem; bottom: .6rem; z-index: 0; }
 }
 
 /* ── ライブ履歴 ─────────────────────── */
