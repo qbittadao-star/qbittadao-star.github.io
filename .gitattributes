@@ -1,0 +1,7 @@
+# 作業コピーの行末を LF に固定する。
+# core.autocrlf=true の環境ではチェックアウトのたびに CRLF へ戻され、
+# 置換編集で行末が一致せず失敗することがあるため。
+*.css  text eol=lf
+*.html text eol=lf
+*.js   text eol=lf
+*.md   text eol=lf
