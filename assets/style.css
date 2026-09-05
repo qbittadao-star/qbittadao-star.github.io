@@ -309,6 +309,39 @@ h2 .idx {
   .mascot { width: 44px; left: auto; right: .4rem; bottom: .6rem; z-index: 0; }
 }
 
+/* ── 即売会の出展告知 ───────────────── */
+/* 会期が終わったらこの節ごと index.html から削除する。 */
+.event {
+  padding: 1.5rem 1.4rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+  border-radius: .75rem;
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+}
+.event .d {
+  color: var(--accent);
+  font-size: .85rem; letter-spacing: .14em; font-weight: 700;
+}
+.event .d .dow { margin-left: .4em; opacity: .75; }
+.event .t {
+  font-weight: 600; font-size: 1.5rem; line-height: 1.4;
+  margin-top: .45rem;
+}
+.event .space {
+  font-size: 1.05rem; line-height: 1.7;
+  margin-top: .9rem;
+}
+.event .space strong {
+  font-size: 1.25em; letter-spacing: .04em;
+  color: var(--accent);
+}
+.event .o { color: var(--muted); font-size: .9rem; line-height: 1.9; margin-top: .7rem; }
+.event-link { margin: 1rem 0 0; font-size: .85rem; }
+.event-link a { text-decoration: none; }
+@media (max-width: 34rem) {
+  .event { padding: 1.2rem 1.1rem; }
+  .event .t { font-size: 1.25rem; }
+}
+
 /* ── ライブ履歴 ─────────────────────── */
 .gigs { display: grid; gap: 1.25rem; }
 .gig {
