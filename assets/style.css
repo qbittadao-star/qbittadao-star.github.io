@@ -171,8 +171,9 @@ footer {
 .nav a:hover { color: var(--accent); }
 @media (max-width: 30rem) {
   .nav { padding: .6rem 1rem; }
-  .nav ul { gap: .95rem; }
-  .nav a { font-size: .7rem; letter-spacing: .1em; }
+  /* 項目が7つになり 375px では溢れるので、詰めたうえで折り返しも許す */
+  .nav ul { gap: .35rem .7rem; flex-wrap: wrap; }
+  .nav a { font-size: .68rem; letter-spacing: .06em; }
 }
 
 /* セクション見出しがナビに隠れないように */
@@ -344,7 +345,7 @@ h2 .idx {
 
 /* ── ライブ履歴 ─────────────────────── */
 .gigs { display: grid; gap: 1.25rem; }
-.gig {
+.gig, .goods {
   display: grid;
   grid-template-columns: 200px 1fr;
   gap: 1.5rem;
@@ -354,28 +355,37 @@ h2 .idx {
   border-radius: .75rem;
   background: color-mix(in srgb, var(--panel) 70%, transparent);
 }
-.gig img {
+.gig img, .goods img {
   width: 100%; height: auto; display: block;
   border-radius: .4rem;
   border: 1px solid var(--line);
 }
-.gig .d {
+.gig .d, .goods .d {
   color: var(--accent);
   font-size: .78rem; letter-spacing: .14em; font-weight: 700;
 }
-.gig .t { font-weight: 600; font-size: 1.25rem; line-height: 1.4; margin-top: .35rem; }
-.gig .o { color: var(--muted); font-size: .88rem; line-height: 1.8; margin-top: .5rem; }
-.gig .cast {
+.gig .t, .goods .t { font-weight: 600; font-size: 1.25rem; line-height: 1.4; margin-top: .35rem; }
+.gig .o, .goods .o { color: var(--muted); font-size: .88rem; line-height: 1.8; margin-top: .5rem; }
+.gig .cast, .goods .cast {
   color: var(--muted); font-size: .8rem; line-height: 1.8;
   margin-top: .9rem; padding-top: .8rem;
   border-top: 1px solid var(--line);
 }
 @media (max-width: 34rem) {
-  .gig { grid-template-columns: 1fr; gap: 1rem; }
-  .gig img { max-width: 240px; }
+  .gig, .goods { grid-template-columns: 1fr; gap: 1rem; }
+  .gig img, .goods img { max-width: 240px; }
 }
 .gig-link { margin: .8rem 0 0; font-size: .85rem; }
 .gig-link a { text-decoration: none; }
+
+/* グッズ: 写真は縦長なので、ライブのフライヤーより少し広く取る */
+.goods { grid-template-columns: 240px 1fr; }
+@media (max-width: 34rem) { .goods { grid-template-columns: 1fr; } }
+.goods-link {
+  display: flex; flex-wrap: wrap; gap: .4rem 1.4rem;
+  margin: .8rem 0 0; font-size: .85rem;
+}
+.goods-link a { text-decoration: none; }
 
 /* ── プラットフォームのアイコン ─────────── */
 .chips a {
