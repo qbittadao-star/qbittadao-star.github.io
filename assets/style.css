@@ -379,7 +379,7 @@ h2 .idx {
 .gig-link a { text-decoration: none; }
 
 /* リンクが2つ並ぶときの間隔（LIVE は1つだけ） */
-.gig-link.two { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; }
+.gig-link.two, .event-link.two { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; }
 
 /* ── プラットフォームのアイコン ─────────── */
 .chips a {
