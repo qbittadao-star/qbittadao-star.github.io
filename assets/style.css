@@ -378,9 +378,12 @@ h2 .idx {
 .gig-link { margin: .8rem 0 0; font-size: .85rem; }
 .gig-link a { text-decoration: none; }
 
-/* グッズ: 写真は縦長なので、ライブのフライヤーより少し広く取る */
-.goods { grid-template-columns: 240px 1fr; }
-@media (max-width: 34rem) { .goods { grid-template-columns: 1fr; } }
+/* グッズ: 写真は控えめに小さく出す */
+.goods { grid-template-columns: 120px 1fr; }
+@media (max-width: 34rem) {
+  .goods { grid-template-columns: 1fr; }
+  .goods img { max-width: 120px; }
+}
 .goods-link {
   display: flex; flex-wrap: wrap; gap: .4rem 1.4rem;
   margin: .8rem 0 0; font-size: .85rem;
