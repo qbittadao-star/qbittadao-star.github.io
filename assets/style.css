@@ -345,7 +345,7 @@ h2 .idx {
 
 /* ── ライブ履歴 ─────────────────────── */
 .gigs { display: grid; gap: 1.25rem; }
-.gig, .goods {
+.gig {
   display: grid;
   grid-template-columns: 200px 1fr;
   gap: 1.5rem;
@@ -355,40 +355,31 @@ h2 .idx {
   border-radius: .75rem;
   background: color-mix(in srgb, var(--panel) 70%, transparent);
 }
-.gig img, .goods img {
+.gig img {
   width: 100%; height: auto; display: block;
   border-radius: .4rem;
   border: 1px solid var(--line);
 }
-.gig .d, .goods .d {
+.gig .d {
   color: var(--accent);
   font-size: .78rem; letter-spacing: .14em; font-weight: 700;
 }
-.gig .t, .goods .t { font-weight: 600; font-size: 1.25rem; line-height: 1.4; margin-top: .35rem; }
-.gig .o, .goods .o { color: var(--muted); font-size: .88rem; line-height: 1.8; margin-top: .5rem; }
-.gig .cast, .goods .cast {
+.gig .t { font-weight: 600; font-size: 1.25rem; line-height: 1.4; margin-top: .35rem; }
+.gig .o { color: var(--muted); font-size: .88rem; line-height: 1.8; margin-top: .5rem; }
+.gig .cast {
   color: var(--muted); font-size: .8rem; line-height: 1.8;
   margin-top: .9rem; padding-top: .8rem;
   border-top: 1px solid var(--line);
 }
 @media (max-width: 34rem) {
-  .gig, .goods { grid-template-columns: 1fr; gap: 1rem; }
-  .gig img, .goods img { max-width: 240px; }
+  .gig { grid-template-columns: 1fr; gap: 1rem; }
+  .gig img { max-width: 240px; }
 }
 .gig-link { margin: .8rem 0 0; font-size: .85rem; }
 .gig-link a { text-decoration: none; }
 
-/* グッズ: 写真は控えめに小さく出す */
-.goods { grid-template-columns: 120px 1fr; }
-@media (max-width: 34rem) {
-  .goods { grid-template-columns: 1fr; }
-  .goods img { max-width: 120px; }
-}
-.goods-link {
-  display: flex; flex-wrap: wrap; gap: .4rem 1.4rem;
-  margin: .8rem 0 0; font-size: .85rem;
-}
-.goods-link a { text-decoration: none; }
+/* リンクが2つ並ぶときの間隔（LIVE は1つだけ） */
+.gig-link.two { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; }
 
 /* ── プラットフォームのアイコン ─────────── */
 .chips a {
