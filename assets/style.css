@@ -247,6 +247,28 @@ h2 .idx {
   border-radius: 999px;
   background: var(--accent); color: var(--bg);
 }
+.track .award {
+  display: inline-block; vertical-align: middle;
+  margin-left: .55rem; padding: .1rem .5rem;
+  font-size: .62rem; letter-spacing: .08em; font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid var(--accent); color: var(--accent);
+}
+
+/* 受賞歴（WORKS の末尾） */
+.awards { list-style: none; padding: 0; margin: .5rem 0 0; }
+.awards li {
+  display: grid; grid-template-columns: 5.5rem 1fr; gap: .2rem 1rem;
+  padding: .7rem 0; border-top: 1px solid var(--line);
+  font-size: .9rem; line-height: 1.7;
+}
+.awards .d { color: var(--accent); font-size: .78rem; letter-spacing: .12em; font-weight: 700; padding-top: .15rem; }
+.awards .prize { font-weight: 700; }
+.awards .o { color: var(--muted); font-size: .85rem; }
+.awards a { text-decoration: none; }
+@media (max-width: 30rem) {
+  .awards li { grid-template-columns: 1fr; gap: 0; }
+}
 @media (max-width: 30rem) {
   .track { grid-template-columns: 1fr; gap: .75rem; }
 }
