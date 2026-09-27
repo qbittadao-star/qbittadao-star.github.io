@@ -255,25 +255,6 @@ h2 .idx {
   border: 1px solid var(--accent); color: var(--accent);
 }
 
-/* 受賞歴（WORKS の末尾） */
-.awards { list-style: none; padding: 0; margin: .5rem 0 0; }
-.awards li {
-  display: grid; grid-template-columns: 5.5rem 1fr; gap: .2rem 1rem;
-  padding: .7rem 0; border-top: 1px solid var(--line);
-  font-size: .9rem; line-height: 1.7;
-}
-.awards .d { color: var(--accent); font-size: .78rem; letter-spacing: .12em; font-weight: 700; padding-top: .15rem; }
-.awards .prize { font-weight: 700; }
-.awards .o { color: var(--muted); font-size: .85rem; }
-.awards a { text-decoration: none; }
-.awards .award-img {
-  display: block; margin-top: .7rem;
-  width: 100%; max-width: 280px; height: auto;   /* width/height属性のヒントを打ち消す */
-  border-radius: .4rem; border: 1px solid var(--line);
-}
-@media (max-width: 30rem) {
-  .awards li { grid-template-columns: 1fr; gap: 0; }
-}
 @media (max-width: 30rem) {
   .track { grid-template-columns: 1fr; gap: .75rem; }
 }
