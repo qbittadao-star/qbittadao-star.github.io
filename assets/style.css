@@ -266,6 +266,11 @@ h2 .idx {
 .awards .prize { font-weight: 700; }
 .awards .o { color: var(--muted); font-size: .85rem; }
 .awards a { text-decoration: none; }
+.awards .award-img {
+  display: block; margin-top: .7rem;
+  width: 100%; max-width: 280px; height: auto;   /* width/height属性のヒントを打ち消す */
+  border-radius: .4rem; border: 1px solid var(--line);
+}
 @media (max-width: 30rem) {
   .awards li { grid-template-columns: 1fr; gap: 0; }
 }
